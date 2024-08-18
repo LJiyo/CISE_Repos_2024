@@ -6,26 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.BookModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
+const book_controller_1 = require("./book.controller");
+const book_service_1 = require("./book.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const book_module_1 = require("./api/books/book.module");
-const config_1 = require("@nestjs/config");
-const DB_URI = 'mongodb+srv://larsjbosales:Kitkat123@cluster0.xxt9o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-let AppModule = class AppModule {
+const book_schema_1 = require("./book.schema");
+let BookModule = class BookModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.BookModule = BookModule;
+exports.BookModule = BookModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot(),
-            mongoose_1.MongooseModule.forRoot(process.env.DB_URI),
-            book_module_1.BookModule,
+            mongoose_1.MongooseModule.forFeature([{ name: book_schema_1.Book.name, schema: book_schema_1.BookSchema }]),
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [book_controller_1.BookController],
+        providers: [book_service_1.BookService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], BookModule);
+//# sourceMappingURL=book.module.js.map
